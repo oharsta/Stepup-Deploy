@@ -1,0 +1,7 @@
+---
+
+- include: middleware.yml
+- include: gateway.yml
+- include: tiqr.yml
+- include: keyserver.yml
+- include: u2f.yml

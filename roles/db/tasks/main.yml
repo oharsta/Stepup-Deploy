@@ -89,6 +89,17 @@
     priv: "*.*:ALL PRIVILEGES/*.*:USAGE"
     state: present
 
+# Add stepup_deploy user, this is the user that is used in the dbconfig role to create all the
+# other databases and users that are required by the stepup components
+- name: add Stepup Deploy user
+  mysql_user:
+    name: "{{ database_stepup_deploy_user }}"
+    password: "{{ database_stepup_deploy_password | vault(vault_keydir) }}"
+    login_user: root
+    login_password: "{{ mariadb_root_password | vault(vault_keydir) }}"
+    priv: "*.*:ALL PRIVILEGES"
+    state: present
+
 # Add backup user
 - name: add mariadb backup user
   mysql_user:
@@ -114,10 +125,3 @@
     key: "{{ mariadb_backup_sshkey }}"
     key_options: command="/home/backup/mariadb_backup.sh"
   when: mariadb_enable_remote_ssh_backup | default(false)
-
-
-- include: middleware.yml
-- include: gateway.yml
-- include: tiqr.yml
-- include: keyserver.yml
-- include: u2f.yml

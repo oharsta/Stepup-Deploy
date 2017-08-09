@@ -63,6 +63,16 @@
   - app
 
 
+- name: Create databases and users for stepup apps
+  hosts: app
+  become: False
+  tags: db
+  serial: 1
+  run_once: true
+
+  roles:
+  - db
+
 - name: Setup proxy on application servers
   hosts: proxy
   become: True
