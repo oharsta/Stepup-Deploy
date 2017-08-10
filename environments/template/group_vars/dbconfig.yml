@@ -1,4 +1,4 @@
 ---
 
-database_stepup_deploy_password: "{{ database_stepup_deploy_password }}"
+database_stepup_deploy_password: "{{ lookup('file', inventory_dir+'/password/database_stepup_deploy') }}"
 database_stepup_deploy_user: stepup_deploy

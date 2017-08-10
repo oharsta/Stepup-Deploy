@@ -94,10 +94,11 @@
 - name: add Stepup Deploy user
   mysql_user:
     name: "{{ database_stepup_deploy_user }}"
+    host: "%"
     password: "{{ database_stepup_deploy_password | vault(vault_keydir) }}"
     login_user: root
     login_password: "{{ mariadb_root_password | vault(vault_keydir) }}"
-    priv: "*.*:ALL PRIVILEGES"
+    priv: "*.*:ALL PRIVILEGES,GRANT"
     state: present
 
 # Add backup user

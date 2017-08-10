@@ -36,12 +36,21 @@
 - name: Setup mariadb database cluster
   hosts: dbcluster
   become: True
-  tags: db
+  tags: db,dbcluster
   serial: 1
 
   roles:
   - db
 
+- name: Create databases and users for stepup apps
+  hosts: app
+  become: False
+  tags: db,dbconfig
+  serial: 1
+  run_once: true
+
+  roles:
+  - dbconfig
 
 - name: Setup elasticseach cluster
   hosts: es
@@ -62,16 +71,6 @@
   roles:
   - app
 
-
-- name: Create databases and users for stepup apps
-  hosts: app
-  become: False
-  tags: db
-  serial: 1
-  run_once: true
-
-  roles:
-  - db
 
 - name: Setup proxy on application servers
   hosts: proxy
