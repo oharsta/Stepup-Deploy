@@ -74,8 +74,19 @@ app
 [dbcluster]
 
 [dbcluster:children]
-# Put database on the app server
+# Put the database on the app server
 app
+
+
+##########
+# dbconfig
+##########
+
+[dbconfig]
+
+[dbconfig:children]
+# Configure the database from the app server
+stepup-app
 
 
 ####

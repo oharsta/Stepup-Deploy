@@ -43,7 +43,7 @@
   - db
 
 - name: Create databases and users for stepup apps
-  hosts: app
+  hosts: dbconfig
   become: False
   tags: db,dbconfig
   serial: 1

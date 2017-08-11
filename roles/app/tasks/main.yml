@@ -25,6 +25,7 @@
   yum: name={{item}} state=present
   with_items:
   - mysql
+  - MySQL-python  # Required for using the Ansible mysql_* modules
   - bzip2
   - nginx
   - php-fpm
