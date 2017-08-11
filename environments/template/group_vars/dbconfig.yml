@@ -1,4 +1,18 @@
 ---
 
-database_stepup_deploy_password: "{{ lookup('file', inventory_dir+'/password/database_stepup_deploy') }}"
+# This needs to be a mysql user that has the rights to create users and databases
+# The `db` role will create this user with all rights on all databases, and the right to
+# to grant thee rights to other users. I.e.:
+#   CREATE USER 'stepup_deploy'@'%' IDENTIFIED BY 'password';
+#   GRANT ALL PRIVILEGES ON *.* TO 'stepup_deploy'@'%' WITH GRANT OPTION;
+#   FLUSH PRIVILEGES;
+#
+# TODO: If you are *not* using the `db` role of Stepup-Deploy to setup a database cluster
+#       you must specify a database user and password here using 'database_stepup_deploy_user'
+#       'and database_stepup_deploy_password'
+
+# The name of the 'root' user for creating the database schema's and database users.
 database_stepup_deploy_user: stepup_deploy
+
+# The vaulted password of the database_stepup_deploy_user
+database_stepup_deploy_password: "{{ lookup('file', inventory_dir+'/password/database_stepup_deploy') }}"
