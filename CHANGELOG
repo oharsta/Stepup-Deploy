@@ -1,3 +1,4 @@
+* Extract new "dbconfig" role from the "db" role. Using the db role is now optional.
 * Make the default locale and the available locales for the stepup applications configurable using group_vars.
   See the playbook variables "default_locale" and "enabled_locales" in group_vars/all.yml. These two variables
   must be added to existing environments.
