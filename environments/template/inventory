@@ -21,6 +21,7 @@
 ############
 
 [stepup-app]
+# 'host_ipv4' and 'backend_ipv4' must be specified
 app.stepup.example.com host_ipv4=192.168.66.2 backend_ipv4=127.0.0.1
 
 ########
@@ -28,6 +29,7 @@ app.stepup.example.com host_ipv4=192.168.66.2 backend_ipv4=127.0.0.1
 ########
 
 [manage]
+# 'host_ipv4' must be specified
 manage.stepup.example.com host_ipv4=192.168.66.3
 
 
